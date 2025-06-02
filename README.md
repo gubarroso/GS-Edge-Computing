@@ -1,4 +1,7 @@
 # GS-Edge-Computing
+Gustavo Garcia Silva RM: 562078
+Gustavo Oliveira Barroso RM: 565705
+Nicolas Santana Gará RM: 561461
 
 **Contexto Simulado**
 
