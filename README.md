@@ -18,7 +18,7 @@ Para a criação deste sistema, utilizamos os seguintes componentes: Arduino UNO
 O funcionamento ocorre da seguinte forma: quando a água atinge a distância de 50 cm do sensor (configuração que pode ser ajustada manualmente nas propriedades do sensor HC-SR04), o sistema é acionado automaticamente. Esse acionamento resulta na abertura do alçapão, representado no simulador pelo movimento do eixo móvel do servomotor.
 
 link Wokwi
-...
+https://wokwi.com/projects/432338099675104257
 
 link Vídeo
 ...
