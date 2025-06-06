@@ -21,4 +21,4 @@ link Wokwi
 https://wokwi.com/projects/432338099675104257
 
 link Vídeo
-...
+https://youtu.be/1J_Guhyhk4A
