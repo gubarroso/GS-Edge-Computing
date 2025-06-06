@@ -17,6 +17,61 @@ Para a criação deste sistema, utilizamos os seguintes componentes: Arduino UNO
 
 O funcionamento ocorre da seguinte forma: quando a água atinge a distância de 50 cm do sensor (configuração que pode ser ajustada manualmente nas propriedades do sensor HC-SR04), o sistema é acionado automaticamente. Esse acionamento resulta na abertura do alçapão, representado no simulador pelo movimento do eixo móvel do servomotor.
 
+**Código Fonte Wokwi**
+
+#include <Servo.h>
+
+const int trigPin = 9;
+const int echoPin = 10;
+const int limiar = 50; // cm
+const int ledTriturador = 5; // LED do triturador
+const int ledAlcapao = 6;    // LED indicador alçapão
+
+Servo alcapao;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ledTriturador, OUTPUT);
+  pinMode(ledAlcapao, OUTPUT);
+  alcapao.attach(3);
+  alcapao.write(0); // alçapão fechado
+  digitalWrite(ledTriturador, LOW);
+  digitalWrite(ledAlcapao, LOW);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  long duration = pulseIn(echoPin, HIGH);
+  int distancia = duration * 0.034 / 2;
+
+  Serial.print("Distância (cm): ");
+  Serial.println(distancia);
+
+  if (distancia <= limiar) {
+    alcapao.write(90);
+    digitalWrite(ledAlcapao, HIGH);
+    digitalWrite(ledTriturador, HIGH);
+    Serial.println("⚠️  Alçapão aberto - Nível crítico atingido!");
+    Serial.println("🗑️ Triturador ligado!");
+  } else {
+    alcapao.write(0);
+    digitalWrite(ledAlcapao, LOW);
+    digitalWrite(ledTriturador, LOW);
+    Serial.println("✅ Alçapão fechado - Nível normal.");
+  }
+
+  delay(1000);
+}
+
+**-----------------------------------------------------------------**
+
 link Wokwi
 https://wokwi.com/projects/432338099675104257
 
